@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Memora | Memory Forge{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forge.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="forge-container">
+  <div class="form-container">
+    <h1>Forge a Memory</h1>
+    
+    <form id="flashcardForm">
+      <div class="form-group">
+        <label for="VocabWord">Word</label>
+        <input type="text" id="word" name="word" required>
+      </div>
+      
+      <div class="form-group0">
+        <div class="form-group">
+          <label for="WordType">Word Type</label>
+          <select id="wordType" name="wordType" required>
+            <option value="">Select type</option>
+            <option value="noun">Noun</option>
+            <option value="verb">Verb</option>
+            <option value="adjective">Adjective</option>
+            <option value="adverb">Adverb</option>
+            <option value="preposition">Preposition</option>
+            <option value="conjunction">Conjunction</option>
+            <option value="pronoun">Pronoun</option>
+            <option value="phrase">Phrase</option>
+            <option value="idiom">Idiom</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="WordLevel">Word Level</label>
+          <select id="wordLevel" name="wordLevel" required>
+            <option value="">Select level</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="Category">Category</label>
+          <select id="category" name="category" required>
+            <option value="">Select category</option>
+            {% for category in categories %}
+            <option value="{{ category[0] }}">{{ category[1] }}</option>
+            {% endfor %}
+            <option value="add_new">+ Add new category</option>
+          </select>
+        </div>
+        
+        <div class="form-group" id="customCategoryGroup" style="display: none;">
+          <label for="customCategory">New Category Name</label>
+          <input type="text" id="customCategory" name="customCategory">
+        </div>
+
+
+      </div>
+      <div class="form-group">
+        <label for="Meaning">Meaning</label>
+        <textarea id="meaning" name="meaning" required></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="Example">Example (optional)</label>
+        <textarea id="example" name="example"></textarea>
+      </div>
+      
+      
+      
+
+      
+      <button type="button" id="submitBtn" class="submit-button">Forge</button>
+    </form>
+  </div>
+</div>
+
+<div id="popup" class="popup" style="display: none;">
+  <div class="popup-content">
+    <h2>Success!</h2>
+    <p>Your flashcard has been created successfully.</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='js/forge.js') }}"></script>
+{% endblock %}

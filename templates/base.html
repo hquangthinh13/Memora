@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Memora{% endblock %}</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/icon_light.svg') }}">
+  <link rel="icon" href="{{ url_for('static', filename='img/icon_dark.svg') }}" type="image/x-icon" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  {% block css %}{% endblock %}
+</head>
+<body>
+  {% if 'user_id' in session %}
+  <div class="background-container">
+    <div class="background">
+      <img src="{{ url_for('static', filename='img/bg.jpg') }}" alt="background">
+    </div>
+  </div>
+  
+  <div class="navigationBar">
+    <div class="logo-container">
+      <h1>Memora.</h1>
+    </div>
+    <div class="navigators">
+      <a href="{{ url_for('manage') }}" class="navigator {% if request.path == url_for('manage') %}active{% endif %}">memory vault</a>
+      <a href="{{ url_for('forge') }}" class="navigator {% if request.path == url_for('forge') %}active{% endif %}">memory forge</a>
+      <a href="{{ url_for('memorizing') }}" class="navigator {% if request.path == url_for('memorizing') %}active{% endif %}">memorizing</a>
+      <a href="{{ url_for('logout') }}" class="navigator">logout</a>
+    </div>
+  </div>
+  {% endif %}
+  
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for message in messages %}
+          <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+  
+  {% block content %}{% endblock %}
+  
+  {% block js %}{% endblock %}
+</body>
+
+</html>

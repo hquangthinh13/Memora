@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Memora | {{ 'Login' if page == 'login' else 'Register' }}{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="background-container">
+  <div class="background">
+    <img src="{{ url_for('static', filename='img/bg.jpg') }}" alt="background">
+  </div>
+</div>
+<div class="auth-container">
+  <div class="auth-form-container">
+    <h1>Memora.</h1>
+    <h2>{{ 'Enter the Archive' if page == 'login' else 'Engrave Your Name' }}</h2>
+    
+    <form class="auth-form" method="POST" action="{{ url_for(page) }}">
+      <div class="form-group">
+        <label for="username">Archive Key</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Chronicle Key</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      
+      {% if page == 'register' %}
+      <div class="form-group">
+        <label for="confirm_password">Confirm Chronicle Key</label>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+      </div>
+      {% endif %}
+      
+      <button type="submit" class="auth-button">
+        {{ "Enter" if page == 'login' else 'Engrave' }}
+      </button>
+    </form>
+    
+    <div class="auth-switch">
+      {% if page == 'login' %}
+        Not in the Chronicle? <a href="{{ url_for('register') }}">Engrave Your Name</a>
+      {% else %}
+        "Already in the archive? <a href="{{ url_for('login') }}">Enter the Archive</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

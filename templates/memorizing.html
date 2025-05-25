@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Memora | Memorizing{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/memorizing.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="flashcard-container">
+  <button class="nav-button" id="prevBtn">&lt;</button>
+
+  <div class="flashcard" id="flashcard">
+    <div class="inner-card">
+      <div class="front">
+        <h1 id="word">word</h1>
+      </div>
+      <div class="back">
+        <div class="word">
+          <h1 id="word-back">word</h1>
+          <h2 id="type">type</h2>
+        </div>
+        <p id="meaning">meaning</p>
+        <h3 id="level">level</h3>
+      </div>
+    </div>
+  </div>
+
+  <button class="nav-button" id="nextBtn">&gt;</button>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+  // Pass flashcards data from Python to JavaScript
+  const flashcards = {{ flashcards|tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/flashcard.js') }}"></script>
+{% endblock %}

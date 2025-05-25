@@ -1,0 +1,315 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-container{
+    z-index: -99;
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.background-container img{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.navigationBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0em 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.navigators{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    gap: 3em;
+}
+
+.logo-container h1{
+    color: #FFF;
+    font-family: Alegreya;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.navigator{
+    text-decoration: none;
+    color: #FFF;
+    text-align: center;
+    font-family: "Alegreya Sans";
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transition: all 0.6s ease;
+
+}
+.navigator.active{
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: 6%; 
+    text-underline-offset: 25%; 
+    text-underline-position: from-font;
+}
+
+.navigator.active:hover, .navigator:hover{
+    transform: translateY(0.3em);
+}
+
+.flashcard-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    max-height: 30em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5em;
+}
+
+.nav-button{
+    display: flex;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0.7rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    border: rgba(255, 255, 255, 0);
+    /* border: 2px solid #0A3C48; */
+    background: rgba(255, 255, 255, 0.18);
+    
+    box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.20);
+    backdrop-filter: blur(12px);
+    color: #0A3C48;
+    text-align: center;
+    font-family: "Alegreya Sans";
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+}
+.nav-button:hover{
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.flashcard {
+    display: flex;
+    width: 50%;
+    height: 50%;
+    perspective: 1000px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-card {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    align-items: center;
+    justify-content: center;
+}
+.flashcard:hover {
+    transform: translateY(-0.5em);
+    transition: all 0.6s ease;
+}
+
+.flashcard.flipped .inner-card {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    /* width: 100%; */
+    width: 35em;
+    height: 16em;
+    backface-visibility: hidden;
+    align-items: center;
+
+    justify-content: space-evenly;
+    gap: 0.5em;
+    border-radius: 3rem;
+    /* border: 2px solid #0A3C48; */
+    background: linear-gradient(212deg, rgba(255, 255, 255, 0.40) -21.81%, rgba(255, 255, 255, 0.50) 39.83%);
+    padding: 0.5em;
+
+    /* backgroundblur */
+    box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.20);
+    backdrop-filter: blur(12px);
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+.front h1, .back h1{
+    color: #0A3C48;
+    text-align: center;
+    font-family: Alegreya;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+    text-transform: lowercase;
+}
+
+.front h1:hover, .back h1:hover{
+    transition: all 0.6s ease;
+}
+
+.back h2{
+    margin: 0;
+    color: #465C61;
+    text-align: center;
+    font-family: "Alegreya Sans";
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.315rem;
+}
+
+.back p{
+    margin: 0;
+    color: #203438;
+    text-align: center;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: "Alegreya Sans";
+    font-size: 1.45rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: lowercase;
+
+}
+
+.back h3{
+    margin: 0;
+    color: #0A3C48;
+    text-align: center;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Alegreya;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.2625rem;
+
+}
+
+/* --- Transitions for flashcard navigation --- */
+
+.flashcard {
+    opacity: 1;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  
+  .flashcard.fade-out-left {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+  
+  .flashcard.fade-out-right {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  
+  .flashcard.fade-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+
+
+/* Responsive Design */
+@media screen and (max-width: 900px) {
+    .nav-button{
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.25rem;
+    }
+    .navigationBar {
+        flex-direction: column;
+        height: auto;
+        padding: 0em 2%;
+    }
+    .navigators {
+        /* gap: 1.5em; */
+        gap: 0.2em 1.5em;
+    }
+    .logo-container h1{
+        margin-bottom: 0.5em;
+    }
+    .navigator{
+        font-size: 1.25rem;
+    }
+    .flashcard-container{
+        width: 90%;
+        flex-direction: column;
+        gap: 0.75em;
+    }
+    .flashcard {
+        width: 80%;
+        height: 40%;
+    }
+    .front, .back {
+        height: 75%;
+        width: 100%;
+    }
+       
+    .front h1, .back h1{
+        font-size: 1.5rem;
+    }
+    .back h2{
+        font-size: 0.75rem;
+    }
+    .back p{
+        font-size: 0.95rem;
+    }
+    .back h3{     
+        font-size: 0.75rem;
+    }
+}
